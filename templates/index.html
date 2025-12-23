@@ -519,8 +519,10 @@
                 document.getElementById('startWebcamBtn').disabled = true;
                 document.getElementById('stopWebcamBtn').disabled = false;
 
-                // Start processing frames
-                webcamInterval = setInterval(processWebcamFrame, 100); // 10 FPS
+                // Start processing frames at 10 FPS
+                // Note: Adjust interval (100ms = 10 FPS) based on your hardware performance
+                // Increase interval for slower systems (e.g., 200ms = 5 FPS)
+                webcamInterval = setInterval(processWebcamFrame, 100);
             } catch (error) {
                 showStatus(`Webcam error: ${error.message}`, 'error');
             }

@@ -118,6 +118,12 @@ class VideoProcessor:
             if count > self.class_counts[class_name]:
                 self.class_counts[class_name] = count
         
+        # Clean up old track histories for inactive tracks
+        active_track_ids = set(int(track[4]) for track in tracked_objects)
+        inactive_tracks = set(self.track_history.keys()) - active_track_ids
+        for track_id in list(inactive_tracks)[:10]:  # Remove up to 10 old tracks per frame
+            del self.track_history[track_id]
+        
         # Prepare statistics
         stats = {
             'total_tracks': len(tracked_objects),

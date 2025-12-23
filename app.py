@@ -11,7 +11,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from backend.utils.video_processor import VideoProcessor
 
-app = Flask(__name__, static_folder='../static', template_folder='../templates')
+app = Flask(__name__, template_folder='templates')
 CORS(app)
 
 # Configuration
