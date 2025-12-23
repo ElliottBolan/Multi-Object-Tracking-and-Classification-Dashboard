@@ -206,6 +206,30 @@ The system can detect and track 80 different object classes from the COCO datase
 3. **For webcam**: Reduce FPS in the frontend (adjust interval in `processWebcamFrame`)
 4. **For videos**: Process offline and view results after completion
 
+## Security
+
+### Production Deployment
+
+**Important:** Debug mode is disabled by default for security. Only enable it during development:
+
+```bash
+# Enable debug mode (development only)
+export FLASK_DEBUG=True
+python app.py
+
+# Production (debug disabled by default)
+python app.py
+```
+
+**Security Recommendations:**
+- Never run with `debug=True` in production
+- Use a proper WSGI server (gunicorn, uWSGI) instead of Flask's built-in server
+- Set a strong `SECRET_KEY` environment variable
+- Implement authentication for sensitive deployments
+- Use HTTPS in production
+- Limit file upload sizes (default: 100MB)
+- Sanitize and validate all user inputs
+
 ## Troubleshooting
 
 ### Model download issues
